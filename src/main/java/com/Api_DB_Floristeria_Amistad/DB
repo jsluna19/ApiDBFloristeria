@@ -1,0 +1,68 @@
+-- Creación de la base de datos
+CREATE DATABASE IF NOT EXISTS florería;
+
+-- Usar la base de datos creada
+USE florería;
+
+-- Tabla Clientes
+CREATE TABLE Clientes (
+    cliente_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    cedula VARCHAR(20),
+    telefono VARCHAR(20),
+    email VARCHAR(255),
+    direccion VARCHAR(255)
+);
+
+-- Tabla Destinatarios
+CREATE TABLE Destinatarios (
+    destinatario_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    cliente_id INT,
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(cliente_id)
+);
+
+-- Tabla Pedidos
+CREATE TABLE Pedidos (
+    pedido_id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id INT,
+    destinatario_id INT,
+    motivo VARCHAR(255),
+    mesaje TEXT,
+    fecha_pedido DATE,
+    fecha_entrega DATETIME,
+    estado ENUM('pendiente', 'en proceso', 'en ruta', 'entregado', 'cancelado') DEFAULT 'pendiente',
+    FOREIGN KEY (cliente_id) REFERENCES Clientes(cliente_id),
+    FOREIGN KEY (destinatario_id) REFERENCES Destinatarios(destinatario_id)
+);
+
+-- Tabla Arreglos Florales
+CREATE TABLE ArreglosFlorales (
+    arreglo_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    anexos TEXT,
+    precio DECIMAL(10, 2)
+);
+
+-- Tabla Detalles del Pedido
+CREATE TABLE DetallesPedido (
+    detalle_id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT,
+    arreglo_id INT,
+    cantidad INT,
+    FOREIGN KEY (pedido_id) REFERENCES Pedidos(pedido_id),
+    FOREIGN KEY (arreglo_id) REFERENCES ArreglosFlorales(arreglo_id)
+);
+
+-- Tabla Métodos de Pago
+CREATE TABLE MetodosPago (
+    pago_id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT,
+    monto DECIMAL(10, 2),
+    metodo_pago VARCHAR(50),
+    fecha_pago DATETIME,
+    FOREIGN KEY (pedido_id) REFERENCES Pedidos(pedido_id)
+);

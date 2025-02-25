@@ -11,10 +11,10 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pedido_id")
-    private int pedidoId;
+    private Integer pedidoId;
 
     @Column(name = "cliente_id")
-    private int clienteId;
+    private Integer clienteId;
 
     @Column(name = "destinatario_id")
     private String destinatarioId;
@@ -29,6 +29,7 @@ public class Pedido {
     @Column(name = "fecha_entrega")
     private Date fechaEntrega;
 
+    @Column(name = "estado")
     private EstadoPedido estado;
 
 
