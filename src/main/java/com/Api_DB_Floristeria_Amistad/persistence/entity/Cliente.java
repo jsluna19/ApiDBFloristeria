@@ -17,9 +17,13 @@ public class Cliente {
     private String direccion;
     private String cedula;
 
-    //Relacion pedidos, un cliente puede tener varios pedidos OneToMay
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Destinatario> destinatarios;
+
+    //Getters and Setters
 
     public Integer getId() {
         return id;
@@ -75,5 +79,13 @@ public class Cliente {
 
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public List<Destinatario> getDestinatarios() {
+        return destinatarios;
+    }
+
+    public void setDestinatarios(List<Destinatario> destinatarios) {
+        this.destinatarios = destinatarios;
     }
 }
