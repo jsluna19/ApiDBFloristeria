@@ -20,13 +20,22 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
+	implementation("org.postgresql:postgresql:42.7.1")
+	implementation("com.zaxxer:HikariCP:5.1.0")
+
 	//Para trabajar con mapstruct se implementa lo siguiente
-	implementation ("org.mapstruct:mapstruct:1.6.3")
-	annotationProcessor ("org.mapstruct:mapstruct-processor:1.6.3")
+	//implementation ("org.mapstruct:mapstruct:1.6.3")
+	//annotationProcessor ("org.mapstruct:mapstruct-processor:1.6.3")
+
+}
+
+configurations{
+	runtimeClasspath {
+		extendsFrom(configurations.implementation.get())
+	}
 }
 
 tasks.withType<Test> {

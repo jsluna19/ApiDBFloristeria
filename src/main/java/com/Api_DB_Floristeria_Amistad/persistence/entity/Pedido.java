@@ -17,7 +17,7 @@ public class Pedido {
     private Integer clienteId;
 
     @Column(name = "destinatario_id")
-    private String destinatarioId;
+    private Integer destinatarioId;
 
     private String motivo;
 
@@ -29,17 +29,8 @@ public class Pedido {
     @Column(name = "fecha_entrega")
     private Date fechaEntrega;
 
-    public enum EstadoPedido {
-        Pendiente,
-        Procesando,
-        Ruta,
-        Entregado,
-        PendienteEntrega,
-        Cancelado
-    }
-
     @Column(name = "estado")
-    private EstadoPedido estado;
+    private String estado;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id", insertable = false, updatable = false)
@@ -75,11 +66,11 @@ public class Pedido {
         this.clienteId = clienteId;
     }
 
-    public String getDestinatarioId() {
+    public Integer getDestinatarioId() {
         return destinatarioId;
     }
 
-    public void setDestinatarioId(String destinatarioId) {
+    public void setDestinatarioId(Integer destinatarioId) {
         this.destinatarioId = destinatarioId;
     }
 
@@ -115,11 +106,11 @@ public class Pedido {
         this.fechaEntrega = fechaEntrega;
     }
 
-    public EstadoPedido getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoPedido estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 

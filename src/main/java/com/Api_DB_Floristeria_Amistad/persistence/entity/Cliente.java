@@ -10,7 +10,8 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "cliente_id")
+    private Integer clienteId;
     private String nombre;
     private String telefono;
     private String email;
@@ -26,11 +27,11 @@ public class Cliente {
     //Getters and Setters
 
     public Integer getId() {
-        return id;
+        return clienteId;
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        this.clienteId = id;
     }
 
     public String getNombre() {
