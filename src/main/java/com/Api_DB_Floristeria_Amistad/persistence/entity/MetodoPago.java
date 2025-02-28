@@ -13,6 +13,7 @@ public class MetodoPago {
     @Column(name = "pago_id")
     private Integer pagoId;
 
+    @Column(name = "pedido_id")
     private Integer pedidoId;
 
     private Double monto;

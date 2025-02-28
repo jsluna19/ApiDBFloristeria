@@ -6,7 +6,6 @@ import com.Api_DB_Floristeria_Amistad.service.DestinatarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.processing.Generated;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +26,7 @@ public class DestinatarioController {
     }
 
     @PostMapping("/save")
-    public Destinatario save(Destinatario destinatario){
+    public Destinatario save(@RequestBody Destinatario destinatario){
         return destinatarioService.saveDestinatario(destinatario);
     }
 

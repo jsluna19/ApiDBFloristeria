@@ -13,9 +13,11 @@ public class Cliente {
     @Column(name = "cliente_id")
     private Integer clienteId;
     private String nombre;
+    @Column(nullable = false, unique = true)
     private String telefono;
     private String email;
     private String direccion;
+    @Column(nullable = false, unique = true)
     private String cedula;
 
     @OneToMany(mappedBy = "cliente")
