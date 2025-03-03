@@ -32,4 +32,8 @@ public class ArregloFloralService {
             return true;
         }).orElse(false);
     }
+
+    public Optional<ArregloFloral> updateArregloFloral(Integer arregloFloralId, ArregloFloral arregloFloralActualizado){
+        return arregloFloralRepository.updateArregloFloral(arregloFloralId, arregloFloralActualizado);
+    }
 }

@@ -34,4 +34,9 @@ public class ArregloFloralController {
     public boolean deleteArregloFloral(@PathVariable("arregloFloralId") Integer arregloFloralId){
         return arregloFloralService.deleteArregloFloral(arregloFloralId);
     }
+
+    @PutMapping("/update/{arregloFloralId}")
+    public Optional<ArregloFloral> updateArregloFloral(@PathVariable("arregloFloralId") Integer arregloFloralId, @RequestBody ArregloFloral arregloFloral){
+        return arregloFloralService.updateArregloFloral(arregloFloralId, arregloFloral);
+    }
 }

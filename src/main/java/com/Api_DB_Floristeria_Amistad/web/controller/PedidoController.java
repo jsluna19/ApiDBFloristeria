@@ -35,4 +35,9 @@ public class PedidoController {
         return pedidoService.deletePedido(pedidoId);
     }
 
+    @PutMapping("/update/{pedidoId}")
+    public Optional<Pedido> update(@RequestBody Pedido pedido, @PathVariable("pedidoId") Integer pedidoId){
+        return pedidoService.updatePedido(pedido, pedidoId);
+    }
+
 }

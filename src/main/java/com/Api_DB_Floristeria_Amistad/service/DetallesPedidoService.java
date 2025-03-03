@@ -33,4 +33,8 @@ public class DetallesPedidoService {
         }).orElse(false);
     }
 
+    public Optional<DetallesPedido> updateDetallesPedido(DetallesPedido detallesPedido, Integer detallesPedidoId){
+        return detallesPedidoRepository.updateDetallesPedido(detallesPedido, detallesPedidoId);
+    }
+
 }

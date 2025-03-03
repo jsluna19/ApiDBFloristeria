@@ -32,6 +32,12 @@ public class Pedido {
     @Column(name = "estado")
     private String estado;
 
+    @Column(name = "detalle_id")
+    private Integer detalleId;
+
+    @Column(name = "pago_id")
+    private Integer pagoId;
+
     @ManyToOne
     @JoinColumn(name = "cliente_id", insertable = false, updatable = false)
     private Cliente cliente;
@@ -49,6 +55,22 @@ public class Pedido {
     private MetodoPago metodoPago;
 
     // Getters and Setters
+
+    public Integer getPagoId() {
+        return pagoId;
+    }
+
+    public void setPagoId(Integer pagoId) {
+        this.pagoId = pagoId;
+    }
+
+    public Integer getDetalleId() {
+        return detalleId;
+    }
+
+    public void setDetalleId(Integer detalleId) {
+        this.detalleId = detalleId;
+    }
 
     public Integer getPedidoId() {
         return pedidoId;

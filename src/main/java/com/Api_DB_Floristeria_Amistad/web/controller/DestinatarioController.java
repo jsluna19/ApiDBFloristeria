@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/destinatarios")
+@RequestMapping("/destinatario")
 public class DestinatarioController {
     @Autowired
     private DestinatarioService destinatarioService;
@@ -33,6 +33,11 @@ public class DestinatarioController {
     @DeleteMapping("/delete/{destinatarioId}")
     public boolean delete(@PathVariable("destinatarioID") Integer destinatarioId){
         return destinatarioService.deleteDestinatario(destinatarioId);
+    }
+
+    @PutMapping("/update/{destinatarioId}")
+    public Optional<Destinatario> update(@RequestBody Destinatario destinatario, @PathVariable("destinatarioId") Integer destinatarioId){
+        return destinatarioService.updateDestinatario(destinatario, destinatarioId);
     }
 
 }

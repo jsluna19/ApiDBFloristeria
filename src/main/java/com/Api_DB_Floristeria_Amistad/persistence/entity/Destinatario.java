@@ -71,13 +71,14 @@ public class Destinatario {
         this.clienteId = clienteId;
     }
 
+    /*
     public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
+    }*/
 
     public List<Pedido> getPedido() {
         return pedido;

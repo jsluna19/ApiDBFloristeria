@@ -34,4 +34,9 @@ public class DetallesPedidoController {
     public boolean delete(@PathVariable("detallesPedidoId") Integer detallesPedidoId){
         return detallesPedidoService.deleteDetallesPedido(detallesPedidoId);
     }
+
+    @PutMapping("/update/{detallesPedidoId}")
+    public Optional<DetallesPedido> update(@RequestBody DetallesPedido detallesPedido, @PathVariable("detallesPedidoId") Integer detallesPedidoId){
+        return detallesPedidoService.updateDetallesPedido(detallesPedido, detallesPedidoId);
+    }
 }

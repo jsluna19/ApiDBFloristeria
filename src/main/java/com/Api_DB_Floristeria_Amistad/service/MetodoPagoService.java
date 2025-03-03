@@ -32,4 +32,8 @@ public class MetodoPagoService {
             return true;
         }).orElse(false);
     }
+
+    public Optional<MetodoPago> updateMetodoPago(MetodoPago metodoPago, Integer metodoPagoId){
+        return metodoPagoRepository.updateMetodoPago(metodoPago, metodoPagoId);
+    }
 }

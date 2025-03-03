@@ -29,4 +29,25 @@ public class DetallesPedidoRepository {
         detallesPedidoCrudRepository.deleteById(detallesPedidoId);
     }
 
+    public Optional<DetallesPedido> updateDetallesPedido(DetallesPedido detallesPedido, Integer detallesPedidoId){
+        return detallesPedidoCrudRepository.findById(detallesPedidoId)
+        .map(detallesPedidoActualizado -> {
+
+            if(detallesPedido.getPedidoId() != null){
+                detallesPedidoActualizado.setPedidoId(detallesPedido.getPedidoId());
+            }
+
+            if(detallesPedido.getArregloId() != null){
+                detallesPedidoActualizado.setArregloId(detallesPedido.getArregloId());
+            }
+
+            if (detallesPedido.getCantidad() != null){
+                detallesPedidoActualizado.setCantidad(detallesPedido.getCantidad());
+            }
+
+            return detallesPedidoCrudRepository.save(detallesPedidoActualizado);
+
+        });
+    }
+
 }

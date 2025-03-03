@@ -34,4 +34,9 @@ public class MetodoPagoController {
     public boolean delete(@PathVariable("metodoPagoId") Integer metodopagoId){
         return metodoPagoService.deleteMetodoPago(metodopagoId);
     }
+
+    @PutMapping("/update/{metodoPagoId}")
+    public Optional<MetodoPago> update(@RequestBody MetodoPago metodopago, @PathVariable("metodoPagoId") Integer metodopagoId){
+        return metodoPagoService.updateMetodoPago(metodopago, metodopagoId);
+    }
 }

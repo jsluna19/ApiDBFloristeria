@@ -2,6 +2,7 @@ package com.Api_DB_Floristeria_Amistad.service;
 
 import com.Api_DB_Floristeria_Amistad.persistence.Repository.DestinatarioRepository;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.Destinatario;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Optional;
 @Service
 public class DestinatarioService {
 
+    @Autowired
     private DestinatarioRepository destinatarioRepository;
 
     public List<Destinatario> getAllDestinatario(){
@@ -29,5 +31,9 @@ public class DestinatarioService {
             destinatarioRepository.delete(destinatarioId);
             return true;
         }).orElse(false);
+    }
+
+    public Optional<Destinatario> updateDestinatario(Destinatario destinatario, Integer destinatarioId){
+        return destinatarioRepository.UpdateDestinatario(destinatario, destinatarioId);
     }
 }

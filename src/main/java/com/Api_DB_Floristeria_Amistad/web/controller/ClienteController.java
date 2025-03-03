@@ -2,7 +2,6 @@ package com.Api_DB_Floristeria_Amistad.web.controller;
 
 import com.Api_DB_Floristeria_Amistad.persistence.entity.Cliente;
 import com.Api_DB_Floristeria_Amistad.service.ClienteService;
-import jakarta.persistence.PostUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,10 +35,9 @@ public class ClienteController {
         return clienteService.deleteCliente(clienteId);
     }
 
-    /*
     @PutMapping("/update/{clienteId}")
-    public Cliente update(@PathVariable("clienteId") Integer clienteId, @RequestBody Cliente cliente){
+    public Optional<Cliente> update(@PathVariable("clienteId") Integer clienteId, @RequestBody Cliente cliente){
         return clienteService.updateCliente(clienteId, cliente);
-    }*/
+    }
 
 }

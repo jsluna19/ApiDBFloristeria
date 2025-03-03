@@ -29,4 +29,26 @@ public class DestinatarioRepository {
     public void delete(Integer destinatarioId){
         destinatarioCrudRepository.deleteById(destinatarioId);
     }
+
+    public Optional<Destinatario> UpdateDestinatario(Destinatario destinatario, Integer destinatarioId){
+        return destinatarioCrudRepository.findById(destinatarioId)
+            .map(destinatarioActualizado -> {
+                // Actualización de los campos según corresponda
+                if (destinatario.getNombre() != null) {
+                    destinatarioActualizado.setNombre(destinatario.getNombre());
+                }
+                if (destinatario.getTelefono() != null) {
+                    destinatarioActualizado.setTelefono(destinatario.getTelefono());
+                }
+                if (destinatario.getDireccion() != null) {
+                    destinatarioActualizado.setDireccion(destinatario.getDireccion());
+                }
+                if (destinatario.getClienteId() != null) {
+                    destinatarioActualizado.setClienteId(destinatario.getClienteId());
+                    
+                }
+                // Guardar el destinatario actualizado
+                return destinatarioCrudRepository.save(destinatarioActualizado);
+            });
+    }
 }

@@ -30,4 +30,25 @@ public class MetodoPagoRepository {
         metodoPagoCrudRepository.deleteById(metodoPagoId);
     }
 
+    public Optional<MetodoPago> updateMetodoPago(MetodoPago metodoPago, Integer metodoPagoId){
+        return metodoPagoCrudRepository.findById(metodoPagoId)
+            .map(MetodoPagoActualizado -> {
+                if(metodoPago.getPedidoId() != null){
+                    MetodoPagoActualizado.setPedidoId(metodoPago.getPedidoId());
+                }
+                if(metodoPago.getMonto() != null){
+                    MetodoPagoActualizado.setMonto(metodoPago.getMonto());
+                }
+                if(metodoPago.getMetodoPago() != null){
+                    MetodoPagoActualizado.setMetodoPago(metodoPago.getMetodoPago());
+                }
+                if(metodoPago.getFechaPago() != null){
+                    MetodoPagoActualizado.setFechaPago(metodoPago.getFechaPago());
+                }
+
+                return metodoPagoCrudRepository.save(MetodoPagoActualizado);
+            });
+        
+    }
+
 }

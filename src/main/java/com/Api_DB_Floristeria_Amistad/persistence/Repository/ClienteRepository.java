@@ -28,5 +28,30 @@ public class ClienteRepository{
 
     public void delete(Integer clienteId){
         clienteCrudRepository.deleteById(clienteId);
+        }
+
+    public Optional<Cliente> updateCliente(Integer clienteId, Cliente nuevoCliente){
+        Optional<Cliente> clienteOptional = clienteCrudRepository.findById(clienteId);
+        if (clienteOptional.isPresent()) {
+            Cliente cliente = clienteOptional.get();
+        
+            // Verificamos qué atributos del nuevo cliente no son nulos antes de actualizar
+            if (nuevoCliente.getNombre() != null) {
+                cliente.setNombre(nuevoCliente.getNombre());
+            }
+            if (nuevoCliente.getEmail() != null) {
+                cliente.setEmail(nuevoCliente.getEmail());
+            }
+            if (nuevoCliente.getTelefono() != null) {
+                cliente.setTelefono(nuevoCliente.getTelefono());
+            }
+            if (nuevoCliente.getDireccion() != null) {
+                cliente.setDireccion(nuevoCliente.getDireccion());
+            }
+        
+            return Optional.of(clienteCrudRepository.save(cliente)); // Guardamos el cliente actualizado
+        }else{
+            return Optional.empty();
+        }
     }
 }

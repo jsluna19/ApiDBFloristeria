@@ -31,4 +31,8 @@ public class PedidoService {
         }).orElse(false);
     }
 
+    public Optional<Pedido> updatePedido(Pedido pedido, Integer pedidoId){
+        return pedidoRepository.updatePedido(pedido, pedidoId);
+    }
+
 }
