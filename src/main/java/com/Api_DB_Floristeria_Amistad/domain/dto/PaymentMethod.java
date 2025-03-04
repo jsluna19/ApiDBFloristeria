@@ -1,7 +1,5 @@
 package com.Api_DB_Floristeria_Amistad.domain.dto;
 
-import com.Api_DB_Floristeria_Amistad.persistence.entity.Pedido;
-
 // Metodo de pago
 public class PaymentMethod {
 
