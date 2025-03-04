@@ -17,6 +17,7 @@ public class MetodoPago {
     private Integer pedidoId;
 
     private Double monto;
+    
     @Column(name = "metodo_pago")
     private String metodoPago;
 

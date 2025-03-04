@@ -1,7 +1,8 @@
 package com.Api_DB_Floristeria_Amistad.web.controller;
 
+import com.Api_DB_Floristeria_Amistad.domain.service.ArregloFloralService;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.ArregloFloral;
-import com.Api_DB_Floristeria_Amistad.service.ArregloFloralService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

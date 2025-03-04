@@ -1,7 +1,8 @@
 package com.Api_DB_Floristeria_Amistad.web.controller;
 
+import com.Api_DB_Floristeria_Amistad.domain.service.ClienteService;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.Cliente;
-import com.Api_DB_Floristeria_Amistad.service.ClienteService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

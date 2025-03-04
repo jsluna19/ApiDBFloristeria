@@ -1,4 +1,4 @@
-package com.Api_DB_Floristeria_Amistad.service;
+package com.Api_DB_Floristeria_Amistad.domain.service;
 
 import com.Api_DB_Floristeria_Amistad.persistence.Repository.PedidoRepository;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.Pedido;

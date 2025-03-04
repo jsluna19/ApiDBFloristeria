@@ -1,6 +1,6 @@
 plugins {
 	java
-	id("org.springframework.boot") version "3.4.2"
+	id("org.springframework.boot") version "3.4.3"
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -27,8 +27,9 @@ dependencies {
 	implementation("com.zaxxer:HikariCP:5.1.0")
 
 	//Para trabajar con mapstruct se implementa lo siguiente
-	//implementation ("org.mapstruct:mapstruct:1.6.3")
-	//annotationProcessor ("org.mapstruct:mapstruct-processor:1.6.3")
+	implementation ("org.mapstruct:mapstruct:1.6.3")
+	annotationProcessor ("org.mapstruct:mapstruct-processor:1.6.3")
+	
 
 }
 

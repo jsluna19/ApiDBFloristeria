@@ -1,7 +1,8 @@
 package com.Api_DB_Floristeria_Amistad.web.controller;
 
+import com.Api_DB_Floristeria_Amistad.domain.service.MetodoPagoService;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.MetodoPago;
-import com.Api_DB_Floristeria_Amistad.service.MetodoPagoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
