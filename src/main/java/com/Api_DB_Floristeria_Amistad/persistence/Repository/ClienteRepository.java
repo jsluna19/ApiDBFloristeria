@@ -48,6 +48,10 @@ public class ClienteRepository{
             if (nuevoCliente.getDireccion() != null) {
                 cliente.setDireccion(nuevoCliente.getDireccion());
             }
+            if (nuevoCliente.getCedula() != null) {
+                cliente.setCedula(nuevoCliente.getCedula());
+            }
+
         
             return Optional.of(clienteCrudRepository.save(cliente)); // Guardamos el cliente actualizado
         }else{
