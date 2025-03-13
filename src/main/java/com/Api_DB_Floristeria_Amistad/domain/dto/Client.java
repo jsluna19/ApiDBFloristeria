@@ -12,6 +12,4 @@ public class Client {
     private Order order;
     private Addressee addressee;
 
-
-
 }
