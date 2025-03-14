@@ -71,7 +71,6 @@ public class Destinatario {
         this.clienteId = clienteId;
     }
 
-    
     public Cliente getCliente() {
         return cliente;
     }

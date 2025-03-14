@@ -8,18 +8,22 @@ import org.mapstruct.Mappings;
 import com.Api_DB_Floristeria_Amistad.domain.dto.OrderDetail;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.DetallesPedido;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = {FlowerArrangementMapper.class})
 public interface OrderDetailMapper {
 
     @Mappings({
         @Mapping(source = "detalleId", target = "orderDetailID"),
-        @Mapping(source = "arreglo", target = "flowerArrangement"),
-        @Mapping(source = "cantidad", target = "quantity")
+        @Mapping(source = "pedidoId", target = "orderID"),
+        @Mapping(source = "arregloId", target = "flowerArrangementID"),
+        @Mapping(source = "cantidad", target = "quantity"),
+        @Mapping(source = "arreglo", target = "flowerArrangement")
+
     })
     OrderDetail tOrderDetail(DetallesPedido detallesPedido);
-
+    List<OrderDetail> toOrderDetail(List<DetallesPedido> detallesPedidos);
     @InheritConfiguration
-    @Mapping(target = "arregloId", ignore = true)
     DetallesPedido toDetallesPedido(OrderDetail orderDetail);
 
 }

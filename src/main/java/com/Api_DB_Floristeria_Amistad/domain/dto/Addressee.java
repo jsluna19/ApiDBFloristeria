@@ -8,11 +8,10 @@ public class Addressee {
     private String phone;   //Telefono
     private String address; //Direccion
     private Integer clientID;   //Id de cliente
-    private Integer orderID;    //Id de pedido
     private Client client;  //Cliente
     private Order order;    //Pedido
 
-    
+
     public Integer getAddresseeID() {
         return addresseeID;
     }
@@ -51,14 +50,6 @@ public class Addressee {
 
     public void setClientID(Integer clientID) {
         this.clientID = clientID;
-    }
-
-    public Integer getOrderID() {
-        return orderID;
-    }
-
-    public void setOrderID(Integer orderID) {
-        this.orderID = orderID;
     }
 
     public Client getClient() {

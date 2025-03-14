@@ -8,19 +8,22 @@ import org.mapstruct.Mappings;
 import com.Api_DB_Floristeria_Amistad.domain.dto.Addressee;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.Destinatario;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = {ClientMapper.class, OrderMapper.class})
 public interface AddresseeMapper {
     
     @Mappings({
         @Mapping(source = "destinatarioID", target = "addresseeID"),
         @Mapping(source = "nombre", target = "name"),
+        @Mapping(source = "telefono", target = "phone"),
         @Mapping(source = "direccion", target = "address"),
-        @Mapping(source = "telefono", target = "phone")
+        @Mapping(source = "clienteId", target = "clientID"),
+        @Mapping(source = "cliente", target = "client"),
+        @Mapping(source = "pedido", target = "order")
     })
     Addressee toAddressee(Destinatario destinatario);
-
+    List<Addressee> toAddressees(List<Destinatario> destinatarios);
     @InheritInverseConfiguration
-    @Mapping(target = "cliente", ignore = true)
-    @Mapping(target = "pedido", ignore = true)
     Destinatario toDestinatario(Addressee addressee);
 }

@@ -8,21 +8,22 @@ import org.mapstruct.Mappings;
 import com.Api_DB_Floristeria_Amistad.domain.dto.PaymentMethod;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.MetodoPago;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = {OrderMapper.class})
 public interface PaymentMethodMapper {
 
     @Mappings({
         @Mapping(source = "pagoId", target = "paymentID"),
+        @Mapping(source = "pedidoId", target = "orderID"),
         @Mapping(source = "monto", target = "amount"),
         @Mapping(source = "metodoPago", target = "paymentMethod"),
-        @Mapping(source = "fechaPago", target = "paymentDate")
+        @Mapping(source = "fechaPago", target = "paymentDate"),
+        @Mapping(source = "pedido", target = "order")
     })
     PaymentMethod toPaymentMethod(MetodoPago metodoPago);
-
-
+    List<PaymentMethod> toPaymentMethods(List<MetodoPago> metodosPago);
     @InheritConfiguration
-    @Mapping(target = "pedido", ignore = true)
-    @Mapping(target = "pedidoId", ignore = true)
     MetodoPago toMetodoPago(PaymentMethod paymentMethod);
 
 }

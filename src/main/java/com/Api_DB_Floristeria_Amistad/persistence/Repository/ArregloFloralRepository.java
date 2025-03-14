@@ -1,7 +1,10 @@
 package com.Api_DB_Floristeria_Amistad.persistence.Repository;
 
+import com.Api_DB_Floristeria_Amistad.domain.dto.FlowerArrangement;
+import com.Api_DB_Floristeria_Amistad.domain.repository.FlowerArrangementRepository;
 import com.Api_DB_Floristeria_Amistad.persistence.crud.ArregloFloralCrudRepository;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.ArregloFloral;
+import com.Api_DB_Floristeria_Amistad.persistence.mapper.FlowerArrangementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -9,25 +12,33 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class ArregloFloralRepository {
+public class ArregloFloralRepository implements FlowerArrangementRepository {
+
+    private FlowerArrangementMapper mapper;
 
     @Autowired
     private ArregloFloralCrudRepository arregloFloralCrudRepository;
 
-    public List<ArregloFloral> getAllArregloFloral(){
-        return (List<ArregloFloral>) arregloFloralCrudRepository.findAll();
+    @Override
+    public List<FlowerArrangement> getAllFloweArragement() {
+        List<ArregloFloral> arreglosFlorales = (List<ArregloFloral>) arregloFloralCrudRepository.findAll();
+        return mapper.toFlowerArrangement(arreglosFlorales);
     }
 
-    public Optional<ArregloFloral> getArregloFloral(Integer arregloFloralId){
-        return arregloFloralCrudRepository.findById(arregloFloralId);
+    @Override
+    public Optional<FlowerArrangement> getFloweArragement(Integer floweArragementId) {
+        return arregloFloralCrudRepository.findById(floweArragementId).map(arregloFloral -> mapper.toFlowerArrangement(arregloFloral));
     }
 
-    public ArregloFloral saveArregloFloral(ArregloFloral arregloFloral){
-        return arregloFloralCrudRepository.save(arregloFloral);
+    @Override
+    public FlowerArrangement saveFloweArragement(FlowerArrangement floweArragement) {
+        ArregloFloral arregloFloral = mapper.toArregloFloral(floweArragement);
+        return mapper.toFlowerArrangement(arregloFloralCrudRepository.save(arregloFloral));
     }
 
-    public void delete(Integer arregloFloralId){
-        arregloFloralCrudRepository.deleteById(arregloFloralId);
+    @Override
+    public void deleteFloweArragement(Integer floweArragementId) {
+        arregloFloralCrudRepository.deleteById(floweArragementId);
     }
 
     public Optional<ArregloFloral> updateArregloFloral(Integer arregloFloralId, ArregloFloral nuevoArregloFloral){
@@ -54,5 +65,19 @@ public class ArregloFloralRepository {
         }else{
             return Optional.empty();
         }
+    }
+
+    @Override
+    public Optional<FlowerArrangement> updateFloweArragement(FlowerArrangement floweArragement, Integer floweArragementId) {
+        Optional<ArregloFloral> arregloFloralOptional = arregloFloralCrudRepository.findById(floweArragementId);
+        if (arregloFloralOptional.isPresent()) {
+            ArregloFloral arregloFloral = arregloFloralOptional.get();
+            arregloFloral.setNombre(floweArragement.getName());
+            arregloFloral.setDescripcion(floweArragement.getDescription());
+            arregloFloral.setPrecio(floweArragement.getPrice());
+            arregloFloral.setAnexos(floweArragement.getAttachments());
+            return Optional.of(mapper.toFlowerArrangement(arregloFloralCrudRepository.save(arregloFloral)));
+        }
+        return Optional.empty();
     }
 }

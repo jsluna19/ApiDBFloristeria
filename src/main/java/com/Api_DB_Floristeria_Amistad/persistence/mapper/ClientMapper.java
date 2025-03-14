@@ -8,7 +8,9 @@ import org.mapstruct.Mappings;
 import com.Api_DB_Floristeria_Amistad.domain.dto.Client;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.Cliente;
 
-@Mapper(componentModel = "spring")
+import java.util.List;
+
+@Mapper(componentModel = "spring", uses = {OrderMapper.class, AddresseeMapper.class})
 public interface ClientMapper {
 
     @Mappings({
@@ -17,14 +19,12 @@ public interface ClientMapper {
         @Mapping(source = "telefono", target = "phone"),
         @Mapping(source = "email", target = "email"),
         @Mapping(source = "direccion", target = "address"),
-        @Mapping(source = "cedula", target = "idCard")
+        @Mapping(source = "cedula", target = "idCard"),
+        @Mapping(source = "pedido", target = "order"),
+        @Mapping(source = "destinatario", target = "addressee")
     })
-
     Client toClient(Cliente cliente);
-
+    List<Client> toClient(List<Cliente> clientes);
     @InheritConfiguration
-    @Mapping(target = "pedidos", ignore = true)
-    @Mapping(target = "destinatarios", ignore = true)
     Cliente toCliente(Client client);
-
 }
