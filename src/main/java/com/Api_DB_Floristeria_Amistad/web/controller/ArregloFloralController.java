@@ -1,5 +1,6 @@
 package com.Api_DB_Floristeria_Amistad.web.controller;
 
+import com.Api_DB_Floristeria_Amistad.domain.dto.FlowerArrangement;
 import com.Api_DB_Floristeria_Amistad.domain.service.ArregloFloralService;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.ArregloFloral;
 
@@ -17,27 +18,27 @@ public class ArregloFloralController {
     private ArregloFloralService arregloFloralService;
 
     @GetMapping("/all")
-    public List<ArregloFloral> getAllArregloFloral(){
-        return arregloFloralService.getAllArregloFloral();
+    public List<FlowerArrangement> getAll(){
+        return arregloFloralService.getAll();
     }
 
-    @GetMapping("/{arregloFloralId}")
-    public Optional<ArregloFloral> getArregloFloral(@PathVariable("arregloFloralId") Integer arregloFloralId){
-        return arregloFloralService.getArregloFloral(arregloFloralId);
+    @GetMapping("/{id}")
+    public Optional<FlowerArrangement> get(@PathVariable("id") Integer id){
+        return arregloFloralService.get(id);
     }
 
     @PostMapping("/save")
-    public ArregloFloral saveArregloFloral(@RequestBody ArregloFloral arregloFloral){
-        return arregloFloralService.saveArregloFloral(arregloFloral);
+    public FlowerArrangement save(@RequestBody FlowerArrangement flowerArrangement){
+        return arregloFloralService.save(flowerArrangement);
     }
 
-    @DeleteMapping("/delete/{arregloFloralId}")
-    public boolean deleteArregloFloral(@PathVariable("arregloFloralId") Integer arregloFloralId){
-        return arregloFloralService.deleteArregloFloral(arregloFloralId);
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteArregloFloral(@PathVariable("id") Integer id){
+        return arregloFloralService.dele(id);
     }
 
-    @PutMapping("/update/{arregloFloralId}")
-    public Optional<ArregloFloral> updateArregloFloral(@PathVariable("arregloFloralId") Integer arregloFloralId, @RequestBody ArregloFloral arregloFloral){
-        return arregloFloralService.updateArregloFloral(arregloFloralId, arregloFloral);
+    @PutMapping("/update/{id}")
+    public Optional<FlowerArrangement> updateArregloFloral(@PathVariable("id") Integer id, @RequestBody FlowerArrangement flowerArrangement){
+        return arregloFloralService.update(id, flowerArrangement);
     }
 }

@@ -1,5 +1,7 @@
 package com.Api_DB_Floristeria_Amistad.domain.service;
 
+import com.Api_DB_Floristeria_Amistad.domain.dto.FlowerArrangement;
+import com.Api_DB_Floristeria_Amistad.domain.repository.FlowerArrangementRepository;
 import com.Api_DB_Floristeria_Amistad.persistence.Repository.ArregloFloralRepository;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.ArregloFloral;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,28 +14,28 @@ import java.util.Optional;
 public class ArregloFloralService {
 
     @Autowired
-    private ArregloFloralRepository arregloFloralRepository;
+    private FlowerArrangementRepository repository;
 
-    public List<ArregloFloral> getAllArregloFloral(){
-        return arregloFloralRepository.getAllArregloFloral();
+    public List<FlowerArrangement> getAll(){
+        return repository.getAllFloweArragement();
     }
 
-    public Optional<ArregloFloral> getArregloFloral(Integer arregloFloralId){
-        return arregloFloralRepository.getArregloFloral(arregloFloralId);
+    public Optional<FlowerArrangement> get(Integer id){
+        return repository.getFloweArragement(id);
     }
 
-    public ArregloFloral saveArregloFloral(ArregloFloral arregloFloral){
-        return arregloFloralRepository.saveArregloFloral(arregloFloral);
+    public FlowerArrangement save(FlowerArrangement flowerArrangement){
+        return repository.saveFloweArragement(flowerArrangement);
     }
 
-    public boolean deleteArregloFloral(Integer arregloFloralId){
-        return getArregloFloral(arregloFloralId).map(arregloFloral -> {
-            arregloFloralRepository.delete(arregloFloralId);
+    public boolean dele(Integer id){
+        return get(id).map(arregloFloral -> {
+            repository.deleteFloweArragement(id);
             return true;
         }).orElse(false);
     }
 
-    public Optional<ArregloFloral> updateArregloFloral(Integer arregloFloralId, ArregloFloral arregloFloralActualizado){
-        return arregloFloralRepository.updateArregloFloral(arregloFloralId, arregloFloralActualizado);
+    public Optional<FlowerArrangement> update(Integer id, FlowerArrangement actualizado){
+        return repository.updateFloweArragement(actualizado, id);
     }
 }
