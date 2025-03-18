@@ -28,7 +28,7 @@ public class ArregloFloralService {
         return repository.saveFloweArragement(flowerArrangement);
     }
 
-    public boolean dele(Integer id){
+    public boolean delet(Integer id){
         return get(id).map(arregloFloral -> {
             repository.deleteFloweArragement(id);
             return true;

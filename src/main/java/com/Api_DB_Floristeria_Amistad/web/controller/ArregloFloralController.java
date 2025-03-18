@@ -5,6 +5,8 @@ import com.Api_DB_Floristeria_Amistad.domain.service.ArregloFloralService;
 import com.Api_DB_Floristeria_Amistad.persistence.entity.ArregloFloral;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,23 +20,29 @@ public class ArregloFloralController {
     private ArregloFloralService arregloFloralService;
 
     @GetMapping("/all")
-    public List<FlowerArrangement> getAll(){
-        return arregloFloralService.getAll();
+    public ResponseEntity<List<FlowerArrangement>> getAll(){
+        return new ResponseEntity<>(arregloFloralService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public Optional<FlowerArrangement> get(@PathVariable("id") Integer id){
-        return arregloFloralService.get(id);
+    public ResponseEntity<FlowerArrangement> get(@PathVariable("id") Integer id){
+        return arregloFloralService.get(id)
+                .map(FlowerArrangement -> new ResponseEntity<>(FlowerArrangement, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/save")
-    public FlowerArrangement save(@RequestBody FlowerArrangement flowerArrangement){
-        return arregloFloralService.save(flowerArrangement);
+    public ResponseEntity<FlowerArrangement> save(@RequestBody FlowerArrangement flowerArrangement){
+        return new ResponseEntity<>(arregloFloralService.save(flowerArrangement), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean deleteArregloFloral(@PathVariable("id") Integer id){
-        return arregloFloralService.dele(id);
+    public ResponseEntity deleteArregloFloral(@PathVariable("id") Integer id){
+        if(arregloFloralService.delet(id)) {
+            return new ResponseEntity(HttpStatus.OK);
+        }else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/update/{id}")
